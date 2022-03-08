@@ -1,4 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: candara;
-    src: url(fonts/Candara.ttf);
+    src: url(fonts/candara.ttf);
+}
+
+@font-face {
+    font-family: republica;
+    src: url(fonts/republica.otf);
+}
+
+@font-face {
+    font-family: erastic;
+    src: url(fonts/erastic.ttf);
+}
+
+@font-face {
+    font-family: bahnschrift;
+    src: url(fonts/bahnschrift.TTF);
 }

@@ -1,16 +1,24 @@
 import React from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Tooltip, Typography } from "@mui/material";
+import { useMoralis } from "react-moralis";
+import { getEllipsisTxt } from "../../helpers/formatter";
 
-const Profile = () => {
+const Account = ({ size }) => {
+  const { user } = useMoralis();
+
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 flex-wrap justify-center">
       <Avatar />
-      <Typography fontFamily="candara" className="font-semibold text-xl whitespace-nowrap">
-        Lorem ipsum
-      </Typography>
-      <Box bgcolor="#200530" width={20} height={20} ml={10} className="rounded"/>
+      <Tooltip title={user?.get("ethAddress") || user?.get("solAddress")} arrow>
+        <Typography
+          fontFamily="candara"
+          className="text-xl whitespace-nowrap"
+        >
+          {getEllipsisTxt(user?.get("ethAddress") || user?.get("solAddress"), size)}
+        </Typography>
+      </Tooltip>
     </div>
   );
 };
 
-export default Profile;
+export default Account;

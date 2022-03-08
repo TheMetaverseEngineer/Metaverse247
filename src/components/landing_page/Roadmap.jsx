@@ -1,119 +1,232 @@
-import React from "react";
-import { Box, List, ListItem, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Scrollbars } from "react-custom-scrollbars";
+import roadmapDesktop from "../../images/landing-page/roadmap-desktop.png";
+import roadmapMobile from "../../images/landing-page/roadmap-mobile.png";
+
+const roadmapPoints = [
+  {
+    title: (
+      <>
+        Q4
+        <br />
+        2021
+      </>
+    ),
+    content: (
+      <>
+        - Starts Building Team
+        <br /> - Start Developing Metaverse 1.1 Alpha
+        <br /> - Start Creating exclusive Collections
+        <br /> - Start Creating Websites
+        <br /> - Start Creating Contents
+      </>
+    ),
+  },
+  {
+    title: (
+      <>
+        Q1
+        <br />
+        2022
+      </>
+    ),
+    content: (
+      <>
+        - Start Building the Brand
+        <br />
+        - Build Social Medias (Discord - Instagram)
+        <br />
+        - Add more Content
+        <br />
+        - Start Whitelist for exclusive nfts and lands
+        <br />
+        - Adding Services
+        <br />
+        - Launch Metaverse v 1.1 Alpha testnet
+        <br /> - Expand dev team
+      </>
+    ),
+  },
+  {
+    title: (
+      <>
+        Q2
+        <br />
+        2022
+      </>
+    ),
+    content: (
+      <>
+        - Metaverse 1.1 Mainnet Launch
+        <br />
+        - Airdrops For Whitelisted
+        <br />
+        - Land Presales for whitelisted <br />
+        - Expand the brand
+        <br />
+        - Expand the Metaverse
+        <br />
+        - Start play 2 earn missions testnet
+        <br />
+        - Developing DAO
+        <br /> - Developing And Testing 1.2 Beta
+      </>
+    ),
+  },
+  {
+    title: (
+      <>
+        Q3
+        <br />
+        2022
+      </>
+    ),
+    content: (
+      <>
+        -Launching Version 1.2 Beta
+        <br />
+        -More Drops -airdrops for whitelisted
+        <br />
+        -Play2Earn Missions Mainnet Launch
+        <br />
+        -Expanding Brand
+        <br />
+        -Expanding Network
+        <br />
+        -Start Token Presale for Whitelisted and Stake plans
+        <br />
+        -Metaverse 1.x Updates
+        <br />
+        -VR + AR integration
+      </>
+    ),
+  },
+  {
+    title: (
+      <>
+        Q4
+        <br />
+        2022
+      </>
+    ),
+    content: (
+      <>
+        -Collection Drops-Airdrops
+        <br />
+        -Expanding Metaverse
+        <br />
+        -Metaverse 1.x Updates
+        <br />
+        -More Service - Play 2 Earn Missions
+        <br />
+        -Expanding Brand
+        <br />
+        -Expanding Community
+      </>
+    ),
+  },
+  {
+    title: <>2023</>,
+    content: (
+      <>
+        Launching Token On DEXes
+        <br />
+        Metaverse 1 Final Release <br />
+        Expand Network
+        <br />
+        Expand Metaverse
+        <br />
+        Starts Developing V2
+        <br />
+        More Drops - Airdrops <br />
+        Defi Services: Lend - Borrow <br />
+        More Play2Earn-Services
+        <br />
+        Listing On More Exchanges
+        <br />
+        Grow Team
+        <br />
+        Start DAO
+      </>
+    ),
+  },
+  {
+    title: <>2024</>,
+    content: (
+      <>
+        Launching Metaverse Version 2 Final
+        <br />
+        Roadmap Updates with DAO votes
+        <br />
+        for the Metaverse 2.0 <br />
+        Growing Network
+        <br />
+        Growing Brand
+        <br />
+        More Exchanges
+        <br />
+        More Exclusive Collections
+      </>
+    ),
+  },
+];
 
 const Roadmap = () => {
+  const mdScreen = useMediaQuery("(min-width: 768px)");
+
   return (
     <Box className="w-full flex flex-col items-center">
       <Box className="text-center mb-7 space-y-1">
         <Typography
-          className="uppercase"
+          className="uppercase font-black"
           color="#004D63"
-          fontSize="clamp(1.5rem, 3vw, 3rem)"
+          fontSize="clamp(2rem, 4vw, 3rem)"
         >
-          Lorem ipsum
-        </Typography>
-        <Typography className="text-white" fontSize="clamp(1rem, 2vw, 1.5rem)">
-          fagtdudm jguk ox9j kjsij
+          Roadmap
         </Typography>
       </Box>
-      <Box className="w-full relative flex justify-center items-center max-w-screen-md">
-        <List
-          sx={{
-            "&::after": {
-              content: "''",
-              width: 5,
-              bgcolor: "#000",
-              position: "absolute",
-              left: { xxs: 0, md: "50%" },
-              transform: { md: "translateX(-50%)" },
-              top: 0,
-              bottom: 0,
-              zIndex: 50,
-              borderRadius: 10,
-            },
-          }}
-          className="pl-14 md:pl-0 md:w-full py-0"
-        >
-          {Array.from(new Array(8)).map((_, i) => (
-            <ListItem
+      <Scrollbars
+        autoHeight
+        autoHeightMin={750}
+        style={{ width: "100%" }}
+        renderView={(props) => (
+          <Box className="flex items-center" {...props}></Box>
+        )}
+      >
+        <Box className="relative mx-auto">
+          <Box
+            component="img"
+            src={mdScreen ? roadmapDesktop : roadmapMobile}
+            alt="Roadmap"
+            className="max-w-none"
+          />
+          {roadmapPoints.map((point, i) => (
+            <Box
               key={i}
-              className="px-0 md:w-1/2"
-              sx={{
-                "&::after": {
-                  content: "''",
-                  background: "#fff",
-                  borderRadius: "50%",
-                  width: 25,
-                  height: 25,
-                  position: "absolute",
-                  border: "3px solid #000",
-                  left: "-3.3rem",
-                  transform: "translateX(-50%)",
-                },
-                "&::before": {
-                  content: "''",
-                  width: "2.5rem",
-                  height: 0,
-                  position: "absolute",
-                  borderTop: "3px dotted #000",
-                  right: "100%",
-                  transform: "translateX(-10%)",
-                },
-                "&:nth-of-type(odd)": {
-                  float: { md: "right" },
-                  clear: { md: "left" },
-                  transform: { md: "translateX(50px)" },
-                  zIndex: 60,
-                  "&::after": {
-                    left: { md: "-3.1rem" },
-                  },
-                },
-                "&:nth-of-type(even)": {
-                  float: { md: "left" },
-                  clear: { md: "right" },
-                  justifyContent: { md: "flex-end" },
-                  transform: { md: "translateX(-50px)" },
-                  zIndex: 60,
-                  "& .wrapper": {
-                    justifyContent: { md: "flex-end" },
-                  },
-                  "&::after": {
-                    left: { md: "auto" },
-                    right: { md: "-3.1rem" },
-                    transform: { md: "translateX(50%)" },
-                  },
-                  "&::before": {
-                    right: { md: "auto" },
-                    left: { md: "100%" },
-                  },
-                },
-              }}
+              className={`absolute border-l pl-3 py-5 flex flex-col gap-5 ${
+                point?.classes
+              } ${(i + 1) % 2 === 0 ? "bottom-1/2" : "top-1/2"}`}
+              left={
+                ((mdScreen ? 1126 : 2335) / 8) * (i + 1) - (mdScreen ? 50 : 120)
+              }
+              maxWidth={200}
             >
-              <Box
-                className="wrapper flex flex-col xs:flex-row items-center gap-y-2 gap-x-3 w-full"
+              <Typography
+                color="#025277"
+                className={`font-black leading-none ${
+                  (i + 1) % 2 === 0 ? "order-2" : "order-none"
+                }`}
+                fontSize="clamp(1.3rem, 5vw, 2rem)"
               >
-                <Box
-                  sx={{
-                    background:
-                      "linear-gradient(0deg, rgba(79,179,255,.78) 0%, rgba(194,214,255,.78) 100%)",
-                  }}
-                  width={60}
-                  height={60}
-                  className="rounded-full shadow-lg"
-                />
-                <Box className="text-center xs:text-left" maxWidth={200}>
-                  <Typography color="#004C63" className="font-black">
-                    Lorem
-                  </Typography>
-                  <Typography className="text-white">
-                    kjhuihu kjhgu kjiij
-                  </Typography>
-                </Box>
-              </Box>
-            </ListItem>
+                {point.title}
+              </Typography>
+              <Typography className="text-white text-sm">
+                {point.content}
+              </Typography>
+            </Box>
           ))}
-        </List>
-      </Box>
+        </Box>
+      </Scrollbars>
     </Box>
   );
 };

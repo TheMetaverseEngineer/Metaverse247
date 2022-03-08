@@ -1,7 +1,7 @@
 import React from "react";
-import bg from "../images/bg1.png";
+import bg from "../../images/landing-page/bg1.png";
 import { Box, Button, Typography } from "@mui/material";
-import map from "../images/map.png";
+import map from "../../images/landing-page/map.png";
 
 const WorldMap = () => {
   return (
@@ -17,12 +17,17 @@ const WorldMap = () => {
             <Box component="img" src={map} alt="World map" />
           </Box>
           <Box className="text-center space-y-7 text-white md:text-left">
-            <Typography className="uppercase" fontSize="clamp(1.5rem, 5vw, 3.5rem)">Lorem ipsum</Typography>
+            <Typography
+              className="uppercase"
+              fontSize="clamp(1.5rem, 5vw, 3.5rem)"
+            >
+              Pangea Ultima
+            </Typography>
             <Typography fontSize="clamp(1rem, 2vw, 1.2rem)">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-              architecto debitis dolore eligendi error est fugiat illum
-              laboriosam neque nesciunt, nihil odio odit optio quo suscipit,
-              temporibus unde velit voluptatem?
+              Pangea Ultima also known as Pangaea II is a possible future
+              supercontinent configuration. Consistent with the supercontinent
+              cycle, Pangaea Ultima could occur within the next 200 million
+              years. You can Buy Metaverse Land In Pangea Ultima Map
             </Typography>
             <Button
               sx={{
@@ -31,7 +36,7 @@ const WorldMap = () => {
               }}
               className="text-white px-16 py-3 text-lg rounded-xl"
             >
-              Lorem ipsum
+              Get whitelisted now
             </Button>
           </Box>
         </Box>

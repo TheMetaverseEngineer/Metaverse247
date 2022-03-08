@@ -10,6 +10,7 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import metamask from "../../images/wallets/metamaskWallet.png";
 import walletConnect from "../../images/wallets/wallet-connect.svg";
+import phantom from "../../images/wallets/phantom.jpg";
 import { useMoralis } from "react-moralis";
 import CustomAlert from "../CustomAlert";
 import Account from "./Account";
@@ -29,11 +30,12 @@ const AuthModal = ({ showModal, setShowModal }) => {
     setShowModal(false);
   };
 
-  const handleLoginClicked = async (provider) => {
+  const handleLoginClicked = async (provider, type) => {
     if (isAuthenticated || isAuthenticating) return;
     try {
       await authenticate({
         provider,
+        type,
         onSuccess: handleSuccess,
         onError: handleError,
       });
@@ -56,8 +58,8 @@ const AuthModal = ({ showModal, setShowModal }) => {
         onClose={() => setShowModal(false)}
         sx={{
           "& .MuiDialog-paper": {
-            bgcolor: "#200530",
-            border: "2px solid #5d0f8a",
+            bgcolor: "primary.main",
+            borderRadius: 5,
           },
         }}
       >
@@ -72,13 +74,11 @@ const AuthModal = ({ showModal, setShowModal }) => {
         </DialogTitle>
         <DialogContent className="flex flex-col items-center gap-3">
           <Box
+            className="flex w-full p-3 rounded-lg shadow-xl justify-center text-white"
             sx={{
               background:
-                "linear-gradient(145deg, rgba(189,139,209,1) 0%, rgba(107,27,207,1) 100%)",
-              filter:
-                ' progid:DXImageTransform.Microsoft.gradient(startColorstr="#bd8bd1",endColorstr="#6b1bcf",GradientType=1)',
+                "linear-gradient(0deg, rgba(154,216,255,1) 0%, rgba(127,200,246,1) 100%)",
             }}
-            className="flex w-full p-3 rounded-lg shadow-lg justify-center"
           >
             <Account size={7} />
           </Box>
@@ -103,8 +103,8 @@ const AuthModal = ({ showModal, setShowModal }) => {
         onClose={() => setShowModal(false)}
         sx={{
           "& .MuiDialog-paper": {
-            bgcolor: "#200530",
-            border: "2px solid #5d0f8a",
+            bgcolor: "primary.main",
+            borderRadius: 5,
           },
         }}
       >
@@ -118,7 +118,7 @@ const AuthModal = ({ showModal, setShowModal }) => {
           Connect Wallet
         </DialogTitle>
         <DialogContent className="flex flex-col items-center gap-3">
-          <div className="flex flex-col sm:flex-row items-center justify-evenly gap-3 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-3 w-full">
             <Button
               onClick={() => handleLoginClicked("injected")}
               className="flex w-full sm:w-auto flex-row sm:flex-col justify-start gap-2 text-black normal-case text-white"
@@ -140,6 +140,19 @@ const AuthModal = ({ showModal, setShowModal }) => {
                 className="w-12 h-12"
               />
               <span className="text-white">WalletConnect</span>
+            </Button>
+            <Button
+              onClick={() => handleLoginClicked(null, "sol")}
+              className="flex w-full sm:w-auto flex-row sm:flex-col justify-start gap-2 normal-case text-white"
+              sx={{ "&.Mui-disabled": { opacity: 0.5 } }}
+              disabled={isAuthenticating}
+            >
+              <img
+                src={phantom}
+                alt="Phantom"
+                className="w-12 h-12 rounded-full"
+              />
+              <span className="text-white">Phantom</span>
             </Button>
           </div>
         </DialogContent>

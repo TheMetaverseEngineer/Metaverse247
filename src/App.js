@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import MarketplaceHomepage from "./pages/MarketplaceHomepage";
+import { useEffect, useState } from "react";
+import { useMoralis } from "react-moralis";
+import { useDispatch } from "react-redux";
+import { fetchUserCryptoInfo, fetchUserSolInfo } from "./features/userSlice";
+import Marketplace from "./components/marketplace/Marketplace";
+import NFTs from "./pages/NFTs";
+import Collection from "./pages/Collection";
+import City from "./pages/City";
+
+// import { SolAuthModal } from "./components/marketplace/SolAuthModal";
 
 function App() {
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useMoralis();
+  const [showAuthModal, showSolAuthModal] = useState(false);
+
+  useEffect(() => {
+    if (user?.get("solAddress")) dispatch(fetchUserSolInfo());
+    if (user?.get("ethAddress")) dispatch(fetchUserCryptoInfo());
+  }, [user]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/cities/:slug" element={<City />} />
+      <Route path="/marketplace" element={<Marketplace />}>
+        <Route path="" element={<MarketplaceHomepage />} />
+        <Route path="nfts" element={<NFTs />} />
+        <Route path="collection/:slug" element={<Collection />} />
+      </Route>
+    </Routes>
   );
 }
 
