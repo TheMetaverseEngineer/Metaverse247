@@ -11,9 +11,10 @@ const About = () => {
       sx={{ backgroundImage: `url("${bg}")`, overflowX: "hidden" }}
       className="bg-cover bg-center"
       pt={15}
+      px={{ xxs: 2, xs: 5, md: 10 }}
     >
       <section id="about">
-        <Box className="flex items-center justify-center flex-col gap-y-20 gap-x-10 mx-auto max-w-screen-2xl 2xl:flex-row 2xl:justify-between">
+        <Box className="flex items-center justify-center flex-col gap-y-20 gap-x-10 mx-auto container 2xl:flex-row 2xl:justify-between">
           <Whitepaper />
           <Roadmap />
         </Box>

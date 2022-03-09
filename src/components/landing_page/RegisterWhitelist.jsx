@@ -12,14 +12,14 @@ import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 // images
 import bg from "../../images/landing-page/bg1.png";
-import club from "../../images/landing-page/slider-images/club.png";
-import concert from "../../images/landing-page/slider-images/concert.png";
-import classroom from "../../images/landing-page/slider-images/classroom.png";
+import club from "../../images/landing-page/slider-images/club.jpg";
+import concert from "../../images/landing-page/slider-images/concert.jpg";
+import classroom from "../../images/landing-page/slider-images/classroom.jpg";
 import conference from "../../images/landing-page/slider-images/conference-room.png";
-import tower from "../../images/landing-page/slider-images/tower.png";
-import gallery from "../../images/landing-page/slider-images/gallery.png";
+import tower from "../../images/landing-page/slider-images/tower.jpg";
+import gallery from "../../images/landing-page/slider-images/gallery.jpg";
 import tools from "../../images/landing-page/slider-images/tools.png";
-import googleTower from "../../images/landing-page/slider-images/search.png";
+import googleTower from "../../images/landing-page/slider-images/search.jpg";
 import commingSoon from "../../images/landing-page/slider-images/comming-soon.png";
 
 const RegisterWhitelist = () => {
@@ -210,70 +210,80 @@ const RegisterWhitelist = () => {
     <section id="top-events">
       <Box
         sx={{ backgroundImage: `url('${bg}')` }}
-        className=" bg-cover bg-center flex items-center justify-end flex-col"
-        px={{ xxs: 2, xs: 6 }}
+        className="bg-cover bg-center flex items-center justify-end flex-col min-w-0"
+        px={{ xxs: 2, xs: 5, md: 10 }}
         py={15}
       >
-        <Box
-          // box attrs
-          component={Swiper}
-          maxWidth="max(90%, 210px)"
-          sx={{
-            "& .swiper-wrapper": {},
-            "& .swiper-button-next, & .swiper-button-prev": {
-              color: "#fff",
-              textShadow: "0 2px 5px #333",
-            },
-            "& .swiper-pagination-bullet": {
-              bgcolor: "#fff",
-              width: 12,
-              height: 12,
-            },
-          }}
-          // Swiper attrs
-          modules={[Navigation]}
-          slidesPerView={1}
-          navigation
-          centeredSlides={true}
-          speed={500}
-        >
-          {slides.map((slide, i) => (
-            <SwiperSlide key={i} className="h-auto">
-              <Card className="bg-transparent rounded-lg shadow-none h-full flex flex-col">
-                <CardMedia
-                  image={slide.img}
-                  component="img"
-                  sx={{ minHeight: 220 }}
-                  className="rounded-t-lg"
-                />
-                <CardContent
-                  sx={{ bgcolor: "#50A1B7" }}
-                  className="flex-grow flex items-center"
-                >
-                  <Box className="flex flex-col flex-grow gap-y-5 gap-x-32 max-w-screen-xl mx-auto xl:flex-row xl:justify-between xl:items-center xl:p-10">
-                    <Button
-                      sx={{
-                        bgcolor: "#D0FFFF",
-                        color: "#000",
-                        "&:hover": {
+        <Box className="container mx-auto min-w-0">
+          <Box
+            // box attrs
+            component={Swiper}
+            sx={{
+              "& .swiper": {
+                width: "100%",
+                maxWidth: "100%",
+                minWidth: 0,
+                minHeight: 0,
+                pt: { lg: 15 },
+                pb: { xxs: 10, lg: 20 },
+                px: { xxs: 2, xs: 5 },
+              },
+              "& .swiper-wrapper": {},
+              "& .swiper-button-next, & .swiper-button-prev": {
+                color: "#fff",
+                textShadow: "0 2px 5px #333",
+              },
+              "& .swiper-pagination-bullet": {
+                bgcolor: "#fff",
+                width: 12,
+                height: 12,
+              },
+            }}
+            // Swiper attrs
+            modules={[Navigation]}
+            slidesPerView={1}
+            navigation
+            centeredSlides={true}
+            speed={500}
+          >
+            {slides.map((slide, i) => (
+              <SwiperSlide key={i} className="h-auto">
+                <Card className="bg-transparent rounded-lg shadow-none h-full flex flex-col">
+                  <CardMedia
+                    image={slide.img}
+                    component="img"
+                    sx={{ minHeight: 220, maxHeight: 500 }}
+                    className="rounded-t-lg"
+                  />
+                  <CardContent
+                    sx={{ bgcolor: "#50A1B7" }}
+                    className="flex-grow flex items-center"
+                  >
+                    <Box className="flex flex-col flex-grow gap-y-5 gap-x-32 max-w-screen-xl mx-auto xl:flex-row xl:justify-between xl:items-center xl:p-10">
+                      <Button
+                        sx={{
                           bgcolor: "#D0FFFF",
-                        },
-                        maxWidth: 600,
-                      }}
-                      disableElevation
-                      className="capitalize order-2 text-lg rounded-xl flex-grow py-3 flex-shrink-0 self-center w-full xl:w-auto xl:py-5 xl:order-none"
-                    >
-                      Register For Whitelist
-                    </Button>
-                    <Box className="text-white capitalize text-center space-y-3 self-center flex-shrink-1">
-                      {slide.title}
-                      {slide.subtitle}
+                          color: "#000",
+                          "&:hover": {
+                            bgcolor: "#D0FFFF",
+                          },
+                          maxWidth: 600,
+                        }}
+                        disableElevation
+                        className="capitalize order-2 text-lg rounded-xl flex-grow py-3 flex-shrink-0 self-center w-full xl:w-auto xl:py-5 xl:order-none"
+                      >
+                        Register For Whitelist
+                      </Button>
+                      <Box className="text-white capitalize text-center space-y-3 self-center flex-shrink-1">
+                        {slide.title}
+                        {slide.subtitle}
+                      </Box>
                     </Box>
-                  </Box>
-                </CardContent>
-              </Card>
-            </SwiperSlide>
-          ))}
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Box>
         </Box>
       </Box>
     </section>

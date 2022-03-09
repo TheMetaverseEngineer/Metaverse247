@@ -39,10 +39,10 @@ export default function TopRooms() {
       <Box
         sx={{ backgroundImage: `url('${bg}')` }}
         className=" bg-cover bg-center flex items-center justify-end flex-col overflow-x-hidden"
-        px={{ xxs: 4, xs: 6 }}
+        px={{ xxs: 2, xs: 5, md: 10 }}
         py={15}
       >
-        <Box className="max-w-screen-xl w-full space-y-5">
+        <Box className="container mx-auto w-full space-y-5">
           <Box className="flex justify-between gap-10 items-center text-white">
             <Typography
               className="uppercase text-center sm:text-left leading-none"
@@ -70,7 +70,10 @@ export default function TopRooms() {
 
 const Cards = ({ images }) => {
   return (
-    <Box className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+    <Box
+      className="grid gap-5"
+      sx={{ gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr));" }}
+    >
       {images.map((e, i) => (
         <Box
           key={i}

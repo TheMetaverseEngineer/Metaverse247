@@ -62,160 +62,161 @@ const HeroSection = () => {
       <Box
         sx={{ backgroundImage: `url('${cities[0].img}')` }}
         className="min-h-screen bg-cover bg-center flex items-center justify-center flex-col min-w-0"
-        px={2}
+        px={{ xxs: 2, xs: 5, md: 10 }}
         pt={20}
         pb={10}
         ref={wrapper}
       >
-        <Box
-          maxWidth="max(90%, 250px)"
-          sx={{
-            "& .swiper": {
-              width: "100%",
-              maxWidth: "100%",
-              minWidth: 0,
-              minHeight: 0,
-              pt: { lg: 15 },
-              pb: { xxs: 10, lg: 20 },
-              px: { xxs: 2, xs: 5 },
-            },
-            "& .swiper-slide-active": {
-              transform: { lg: "scale(1.3)" },
-              transition: "transform .6s ease-out",
-            },
-            "& .swiper-button-next, & .swiper-button-prev": {
-              color: "#fff",
-              textShadow: "0 2px 5px #333",
-              fontWeight: "bold",
-              "&::after": {
-                fontSize: { xxs: 30, xs: 40 },
+        <Box className="container mx-auto">
+          <Box
+            sx={{
+              "& .swiper": {
+                width: "100%",
+                maxWidth: "100%",
+                minWidth: 0,
+                minHeight: 0,
+                pt: { lg: 15 },
+                pb: { xxs: 10, lg: 20 },
+                px: { xxs: 2, xs: 5 },
               },
-            },
-            "& .swiper-pagination-bullet": {
-              bgcolor: "#fff",
-              width: 12,
-              height: 12,
-            },
-            "& .swiper-button-prev": {
-              left: 0,
-            },
-            "& .swiper-button-next": {
-              right: 0,
-            },
-          }}
-        >
-          <Swiper
-            modules={[Navigation, Pagination]}
-            slidesPerView={1}
-            navigation
-            pagination={{ clickable: true }}
-            spaceBetween={100}
-            centeredSlides={true}
-            speed={500}
-            onActiveIndexChange={(swiper) => {
-              if (!wrapper?.current) return;
-              wrapper.current.style.backgroundImage = `url('${
-                cities[swiper.realIndex]?.img
-              }')`;
-            }}
-            breakpoints={{
-              1024: {
-                slidesPerView: 2,
+              "& .swiper-slide-active": {
+                transform: { lg: "scale(1.3)" },
+                transition: "transform .6s ease-out",
               },
-              1536: {
-                slidesPerView: 3,
+              "& .swiper-button-next, & .swiper-button-prev": {
+                color: "#fff",
+                textShadow: "0 2px 5px #333",
+                fontWeight: "bold",
+                "&::after": {
+                  fontSize: { xxs: 30, xs: 40 },
+                },
+              },
+              "& .swiper-pagination-bullet": {
+                bgcolor: "#fff",
+                width: 12,
+                height: 12,
+              },
+              "& .swiper-button-prev": {
+                left: 0,
+              },
+              "& .swiper-button-next": {
+                right: 0,
               },
             }}
           >
-            {cities.map((city, i) => (
-              <SwiperSlide key={i}>
-                <Box className="space-y-5">
-                  <Box
-                    component={Link}
-                    to={`cities/${city.slug}`}
-                    sx={{ backgroundImage: `url('${city.img}')` }}
-                    className="bg-cover bg-center bg-no-repeat p-5 relative flex items-center justify-center"
-                    minHeight={{ xxs: 300, xs: 400, sm: 500 }}
-                    borderRadius={15}
-                  >
-                    <Box className="relative z-50 flex flex-col items-center gap-5">
-                      <Box
-                        component="img"
-                        src={city.logo}
-                        alt={`${city.name} logo`}
-                        maxWidth={120}
-                      />
-                      <Box className="text-center text-white">
-                        <Typography
-                          fontSize="clamp(1.3rem, 5vw, 3rem)"
-                          sx={{ textShadow: "0 1px 10px #555" }}
-                          className="font-black leading-none mb-3"
-                        >
-                          {city.name}
-                        </Typography>
-                        <Typography
-                          fontSize="clamp(1.2rem, 4vw, 1.5rem)"
-                          sx={{ textShadow: "0 1px 10px #555" }}
-                          className="leading-none"
-                        >
-                          {city.tagline}
-                        </Typography>
-                      </Box>
-                    </Box>
+            <Swiper
+              modules={[Navigation, Pagination]}
+              slidesPerView={1}
+              navigation
+              pagination={{ clickable: true }}
+              spaceBetween={100}
+              centeredSlides={true}
+              speed={500}
+              onActiveIndexChange={(swiper) => {
+                if (!wrapper?.current) return;
+                wrapper.current.style.backgroundImage = `url('${
+                  cities[swiper.realIndex]?.img
+                }')`;
+              }}
+              breakpoints={{
+                1024: {
+                  slidesPerView: 2,
+                },
+                1536: {
+                  slidesPerView: 3,
+                },
+              }}
+            >
+              {cities.map((city, i) => (
+                <SwiperSlide key={i}>
+                  <Box className="space-y-5">
                     <Box
-                      className="absolute inset-0"
-                      sx={{
-                        background:
-                          "linear-gradient(0deg, rgba(79,179,255,0.42) 0%, rgba(194,214,255,0.42) 100%)",
-                      }}
+                      component={Link}
+                      to={`cities/${city.slug}`}
+                      sx={{ backgroundImage: `url('${city.img}')` }}
+                      className="bg-cover bg-center bg-no-repeat p-5 relative flex items-center justify-center"
+                      minHeight={{ xxs: 300, xs: 400, sm: 500 }}
                       borderRadius={15}
-                    />
-                  </Box>
-                  <Box className="flex flex-col items-center gap-x-5 xs:flex-row justify-center">
-                    {/* <Box
+                    >
+                      <Box className="relative z-50 flex flex-col items-center gap-5">
+                        <Box
+                          component="img"
+                          src={city.logo}
+                          alt={`${city.name} logo`}
+                          maxWidth={120}
+                        />
+                        <Box className="text-center text-white">
+                          <Typography
+                            fontSize="clamp(1.3rem, 5vw, 3rem)"
+                            sx={{ textShadow: "0 1px 10px #555" }}
+                            className="font-black leading-none mb-3"
+                          >
+                            {city.name}
+                          </Typography>
+                          <Typography
+                            fontSize="clamp(1.2rem, 4vw, 1.5rem)"
+                            sx={{ textShadow: "0 1px 10px #555" }}
+                            className="leading-none"
+                          >
+                            {city.tagline}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      <Box
+                        className="absolute inset-0"
+                        sx={{
+                          background:
+                            "linear-gradient(0deg, rgba(79,179,255,0.42) 0%, rgba(194,214,255,0.42) 100%)",
+                        }}
+                        borderRadius={15}
+                      />
+                    </Box>
+                    <Box className="flex flex-col items-center gap-x-5 xs:flex-row justify-center">
+                      {/* <Box
                       component="img"
                       src={city.logo}
                       alt={`${city.name} logo`}
                       maxWidth={100}
                       className="flex-grow-0"
                     /> */}
-                    <Box className="text-white">
-                      <Box className="flex justify-between gap-5 items-center">
+                      <Box className="text-white">
+                        <Box className="flex justify-between gap-5 items-center">
+                          <Typography
+                            className="font-black self-end leading-none"
+                            fontSize="clamp(1.3rem, 3vw, 3rem)"
+                            sx={{ textShadow: "0 2px 5px #333" }}
+                          >
+                            {city.name}
+                          </Typography>
+                          <Box
+                            component="img"
+                            src={africaMap}
+                            alt="Map"
+                            maxWidth={40}
+                          />
+                        </Box>
                         <Typography
-                          className="font-black self-end leading-none"
-                          fontSize="clamp(1.3rem, 3vw, 3rem)"
+                          fontSize="clamp(1rem, 2vw, 1.3rem)"
+                          className="leading-none mt-2 font-bold"
                           sx={{ textShadow: "0 2px 5px #333" }}
                         >
-                          {city.name}
+                          Address: <br />
+                          <Box
+                            component="a"
+                            href={city.href}
+                            className="font-medium text-gray-400"
+                            fontSize="clamp(.8rem, 1.5vw, 1.1rem)"
+                          >
+                            {city.address}
+                          </Box>
                         </Typography>
-                        <Box
-                          component="img"
-                          src={africaMap}
-                          alt="Map"
-                          maxWidth={40}
-                        />
                       </Box>
-                      <Typography
-                        fontSize="clamp(1rem, 2vw, 1.3rem)"
-                        className="leading-none mt-2 font-bold"
-                        sx={{ textShadow: "0 2px 5px #333" }}
-                      >
-                        Address: <br />
-                        <Box
-                          component="a"
-                          href={city.href}
-                          className="font-medium text-gray-400"
-                          fontSize="clamp(.8rem, 1.5vw, 1.1rem)"
-                        >
-                          {city.address}
-                        </Box>
-                      </Typography>
                     </Box>
                   </Box>
-                </Box>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
         </Box>
       </Box>
     </section>
