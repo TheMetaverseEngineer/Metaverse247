@@ -139,11 +139,11 @@ const Categories = ({
       name: "Concert",
     },
     {
-      icon: <i class="fa-solid fa-building" />,
+      icon: <i className="fa-solid fa-building" />,
       name: "Tower",
     },
     {
-      icon: <i class="fa-solid fa-house-laptop" />,
+      icon: <i className="fa-solid fa-house-laptop" />,
       name: "Workspace",
     },
     { icon: <i className="fa-solid fa-image" />, name: "Gallery" },
