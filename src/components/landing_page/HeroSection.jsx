@@ -67,7 +67,7 @@ const HeroSection = () => {
         pb={10}
         ref={wrapper}
       >
-        <Box className="container mx-auto">
+        <Box className="container mx-auto min-w-0">
           <Box
             sx={{
               "& .swiper": {

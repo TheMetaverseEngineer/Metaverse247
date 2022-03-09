@@ -252,7 +252,7 @@ const RegisterWhitelist = () => {
                   <CardMedia
                     image={slide.img}
                     component="img"
-                    sx={{ minHeight: 220, maxHeight: 500 }}
+                    sx={{ height: "min(500px, 50vw)" }}
                     className="rounded-t-lg"
                   />
                   <CardContent

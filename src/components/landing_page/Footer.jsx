@@ -79,11 +79,15 @@ const Footer = () => {
   return (
     <footer>
       <Box
-        className="text-white grid gap-5 gap-x-10 pt-20 container relative mx-auto px-5 xs:px-10 sm:grid-cols-2 xl:grid-cols-4 xl:justify-items-center"
+        className="text-white grid gap-5 gap-x-10 pt-20 container relative mx-auto justify-center justify-items-center md:justify-items-stretch md:justify-evenly"
         mt={20}
         pb={5}
+        gridTemplateColumns={{
+          md: "repeat(2, fit-content(50%))",
+          xl: "repeat(4, fit-content(25%))",
+        }}
       >
-        <Box className="text-center space-y-1.5 sm:text-left absolute top-0 w-full">
+        <Box className="text-center space-y-1.5 absolute top-0 w-full">
           <Box className="flex flex-wrap gap-1.5 justify-center">
             <IconButton disabled>
               <i className="fa-brands fa-twitter" />
@@ -104,16 +108,16 @@ const Footer = () => {
         </Box>
         {columns.map((col, i) => (
           <Box
-            className="text-center space-y-1.5 sm:text-left relative"
+            className="text-center space-y-1.5 relative md:text-left"
             key={i}
           >
             <Typography className="font-black text-2xl">{col.name}</Typography>
-            <Box className="flex flex-wrap justify-center gap-x-5 gap-y-1 sm:flex-col">
+            <Box className="flex flex-wrap justify-center gap-x-5 gap-y-1 md:flex-col">
               {col.links.map((link, i) => (
                 <Button
                   href={link.href}
                   key={i}
-                  className="text-white normal-case justify-start"
+                  className="text-white normal-case md:justify-start"
                   disabled={link?.disabled}
                 >
                   {link.name}
