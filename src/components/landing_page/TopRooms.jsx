@@ -18,16 +18,34 @@ export default function TopRooms() {
 
   useEffect(() => {
     let images = [];
+    const categories = [
+      "Casino",
+      "Shop",
+      "Classroom",
+      "Concert",
+      "Tower",
+      "Workspace",
+      "Gallery",
+      "Club",
+      "Conference",
+    ];
 
     // using webpack to get all the images inside top-rooms folder
     const modules = require.context(
       "../../images/landing-page/top-rooms",
       false,
-      /\.(png|jpe?g|svg|PNG)$/
+      /\.(png|jpe?g|svg)$/
     );
 
-    modules.keys().forEach((item) => {
-      images.push(modules(item).default);
+    categories.forEach((category) => {
+      const regex = new RegExp(`${category}`, "i");
+
+      modules.keys().forEach((item) => {
+        const itemCateogy = item.search(regex);
+        if (itemCateogy === -1) return;
+
+        images.push({ img: modules(item).default, category });
+      });
     });
 
     setAllImages(images);
@@ -77,16 +95,14 @@ const Cards = ({ images }) => {
       {images.map((e, i) => (
         <Box
           key={i}
-          sx={{ background: `url('${e}')` }}
+          sx={{ background: `url('${e?.img}')` }}
           minHeight={350}
           className="bg-cover bg-center bg-no-repeat flex items-end"
-          borderRadius={5}
+          borderRadius={6}
         >
           <Box
-            bgcolor="rgba(255, 255, 255, 0.25)"
-            className="flex flex-col w-full items-center gap-2 px-8 py-8 uppercase text-white"
-            borderRadius={5}
-            sx={{ backdropFilter: "blur(10px)" }}
+            className="flex flex-col w-full items-center gap-2 px-8 py-8 uppercase text-white bg-transparent backdrop-filter backdrop-blur-lg backdrop-brightness-75 overflow-hidden"
+            borderRadius={6}
           >
             <Typography className="font-semibold">Title</Typography>
             <Box className="flex justify-between w-full">
@@ -146,8 +162,9 @@ const Categories = ({
       return;
     }
 
-    const regex = new RegExp(`${category}`, "i");
-    setFilterdImages(() => allImages.filter((image) => image.match(regex)));
+    setFilterdImages(() =>
+      allImages.filter((image) => image.category === category)
+    );
   };
 
   return (
